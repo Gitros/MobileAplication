@@ -1,29 +1,27 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, useColorScheme } from 'react-native';
-import Greeting from './src/components/Greeting';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Toast from 'react-native-toast-message';
+import { RootNavigator } from './src/navigation';
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <SafeAreaView>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView>
-        <Greeting name="Anna" age={25} />
-        <Greeting name="Piotr" isVip={true} />
-        <Greeting name="Kasia" age={30} isVip={true} />
-        <Greeting name="Jan" />
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { retry: 1, staleTime: 30_000 },
   },
 });
 
-export default App;
+export default function App() {
+  return (
+    <SafeAreaProvider>
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer>
+          <StatusBar barStyle="dark-content" />
+          <RootNavigator />
+        </NavigationContainer>
+        <Toast />
+      </QueryClientProvider>
+    </SafeAreaProvider>
+  );
+}
