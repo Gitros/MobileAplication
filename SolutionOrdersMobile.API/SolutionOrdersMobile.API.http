@@ -1,0 +1,6 @@
+@SolutionOrdersMobile.API_HostAddress = http://localhost:5033
+
+GET {{SolutionOrdersMobile.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

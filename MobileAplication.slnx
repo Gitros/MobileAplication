@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="SolutionOrdersMobile.API/SolutionOrdersMobile.API.csproj" />
+  <Project Path="SolutionOrdersMobile.Application/SolutionOrdersMobile.Application.csproj" />
+  <Project Path="SolutionOrdersMobile.Domain/SolutionOrdersMobile.Domain.csproj" />
+  <Project Path="SolutionOrdersMobile.Infrastructure/SolutionOrdersMobile.Infrastructure.csproj" />
+</Solution>
